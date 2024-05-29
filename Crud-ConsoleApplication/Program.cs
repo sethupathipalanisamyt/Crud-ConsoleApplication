@@ -8,6 +8,6 @@ public class Program
     public static void Main(string[] args)
     {
         ProductService productser = new ProductService();
-        productser.MenuRegister();
+        productser.MenuDriven();
     }
 }

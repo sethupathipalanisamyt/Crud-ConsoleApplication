@@ -15,7 +15,7 @@ namespace ProjectDataAccessLayer
 
 
 
-        public void MenuRegister()
+        public void MenuDriven()
 
         {
             int option = 0;
@@ -40,13 +40,13 @@ namespace ProjectDataAccessLayer
                         Insert();
                         break;
                     case 2:
-
+                        Update();
                         break;
                     case 3:
-
+                        Delete();
                         break;
                     case 4:
-
+                        Showall();
                         break;
                     
 
@@ -74,6 +74,57 @@ namespace ProjectDataAccessLayer
             }catch (Exception e) 
             {
                 Console.WriteLine(e.Message); 
+            }
+        }
+        public void Update()
+        {
+            try
+            {
+                Console.WriteLine("Enter Your Product Name:");
+                product.Name = Console.ReadLine();
+                Console.WriteLine("Enter Your Price To Update ");
+                product.Price= Convert.ToDecimal(Console.ReadLine());
+                productRep.Update(product);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public void Delete()
+        {
+            try 
+            {
+                Console.WriteLine("Enter Your Product Name to Delete");
+                product.Name = Console.ReadLine();
+                productRep.Delete(product);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void Showall()
+        {
+            try
+            {
+                var Showallresult = productRep.Showall();
+                if(Showallresult == null   || Showallresult.Count()==0)
+                {
+                    Console.WriteLine("No Record Found");
+                }
+                else
+                {
+                    Console.WriteLine($"{"Id"}    |{"Name"}     |{"Price"}    |{"GST"}    |{"Weight"}    |{"Description"}");
+
+                    foreach (var record in Showallresult)
+                    {
+                        Console.WriteLine($"{record.Id}       |{record.Name}     |{record.Price}    |{record.Gst}    |{record.Weight}    |{record.Description}");
+                    }
+                }
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

@@ -41,5 +41,81 @@ namespace ProjectDataAccessLayer
 
 
         }
+        internal void Update(ProductModel product)
+        {
+            try
+            {
+
+                if (product.Price != 0 && product.Name.Length != 0)
+                {
+                    var Gst = product.Price * 10 / 100;
+
+                    var Update = ($"exec Put '{product.Name}',{product.Price},{Gst}");
+                    DAL.Open();
+                    DAL.Execute(Update);
+                    DAL.Close();
+                }
+                
+
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+        public void Delete(ProductModel product)
+        {
+            try
+            {
+                if (product.Name != null && product.Name.Length != 0)
+                {
+                    var Delete = ($"exec Spremove '{product.Name}'");
+                    DAL.Open();
+                    DAL.Execute(Delete);
+                    DAL.Close();
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+        public IEnumerable<ProductModel> Showall()
+        {
+            IEnumerable<ProductModel> result = Enumerable.Empty<ProductModel>();
+
+            try
+            {
+                var showAllQuery = "exec List";
+                DAL.Open();
+                result = DAL.Query<ProductModel>(showAllQuery);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                DAL.Close();
+            }
+
+            return result;
+        }
     }
 }
