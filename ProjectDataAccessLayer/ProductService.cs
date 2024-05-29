@@ -18,7 +18,7 @@ namespace ProjectDataAccessLayer
         public void MenuDriven()
 
         {
-            int option = 0;
+            int option ;
             do
             {
                 Console.WriteLine("Choose the below option");
@@ -28,7 +28,7 @@ namespace ProjectDataAccessLayer
                 Console.WriteLine("4.Show ALL");
                
                 option = int.Parse(Console.ReadLine());
-                if (option > 5)
+                if (option >= 5)
                 {
                     Console.WriteLine("EXIT OPTION ENTERED");
                     return;

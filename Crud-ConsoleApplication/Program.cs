@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using ProjectDataAccessLayer;
-namespace program;
+namespace Crud_ConsoleApplication;
 public class Program
 {
     public static void Main(string[] args)
