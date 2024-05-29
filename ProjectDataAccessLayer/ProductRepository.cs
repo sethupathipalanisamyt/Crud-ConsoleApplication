@@ -54,6 +54,7 @@ namespace ProjectDataAccessLayer
                     DAL.Open();
                     DAL.Execute(Update);
                     DAL.Close();
+                    Showall();
                 }
                 
 
@@ -79,6 +80,7 @@ namespace ProjectDataAccessLayer
                     DAL.Open();
                     DAL.Execute(Delete);
                     DAL.Close();
+                    Showall();
                 }
 
             }
